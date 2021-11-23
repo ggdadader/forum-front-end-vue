@@ -287,7 +287,7 @@ const dummyData = {
             "updatedAt": "2021-11-10T20:54:42.000Z"
         }
     ],
-    "categoryId": "",
+    "categoryId":'',
     "page": 1,
     "totalPage": [
         1,
@@ -300,11 +300,12 @@ const dummyData = {
     "next": 2
 }
 export default {
+    name:"Restaurants",
   components: {
-    NavTabs:NavTabs,
+    NavTabs,
     RestaurantCard,
     RestaurantsNavPills,
-    RestaurantsPagination
+    RestaurantsPagination,
   },
   data () {
     return {

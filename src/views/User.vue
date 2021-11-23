@@ -7,14 +7,14 @@
 
 <div class="row">
   <div class="col-md-4">
-    <UserFollowingsCard :userProfile="userProfile"/>
+    <UserFollowingsCard :followings="followings"/>
     <br>
-    <UserFollowersCard :userProfile="userProfile"/>
+    <UserFollowersCard :followers="followers"/>
   </div>
   <div class="col-md-8">
-    <UserCommentsCard :userProfile="userProfile"/>
+    <UserCommentsCard :comments="comments"/>
     <br>
-    <UserFavoritedRestaurantsCard :userProfile="userProfile"/>
+    <UserFavoritedRestaurantsCard :favoritedRestaurants="favoritedRestaurants"/>
   </div>
 </div>
        </div>
@@ -1203,6 +1203,16 @@ const dummyData = {
   },
   'isFollowed': false
 }
+const dummyUser = {
+  currentUser: {
+    id: 1,
+    name: "管理者",
+    email: "root@example.com",
+    image: "https://i.pravatar.cc/300",
+    isAdmin: true,
+  },
+  isAuthenticated: true,
+};
 
 export default {
   name: "user",
@@ -1215,23 +1225,38 @@ export default {
   },
 
   data(){
-    return{
-      userProfile:{},
-      isFollowed:false
+    return {
+      userProfile: {},
+      isFollowed: false,
+      followings: [],
+      followers: [],
+      comments: [],
+      favoritedRestaurants: [],
+      currentUser:{}
     }
   },
-  created (){
-    this.fetchUserProfile()
+  created () {
+    this.fetchProfile()
   },
   methods:{
-    fetchUserProfile(){
-      const { id } = this.$route.params
+    fetchProfile(){
+      const profile = dummyData.profile
       this.userProfile = {
-        ...dummyData.profile,
-        id
-      },
-      this.isFollowed = dummyData.isFollowed
-
+        id:profile.id,
+        name:profile.name,
+        image:profile.image,
+        email:profile.email,
+        commentsLength:profile.Comments.length,
+        favoritedRestaurantsLength:profile.FavoritedRestaurants.length,
+        followingsLength: profile.Followings.length,
+        followersLength: profile.Followers.length,
+      };
+      this.isFollowed= dummyData.isFollowed
+      this.followings = profile.Followings
+      this.followers = profile.Followers
+      this.comments = profile.Comments
+      this.favoritedRestaurants = profile.FavoritedRestaurants
+      this.currentUser = dummyUser.currentUser
     }
   }
 

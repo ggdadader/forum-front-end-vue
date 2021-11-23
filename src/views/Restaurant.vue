@@ -1,10 +1,9 @@
 <template>
   <div class="container py-5">
-    <h1 class="d-none">餐廳描述頁</h1>
     <!-- 餐廳資訊頁 RestaurantDetail -->
     <RestaurantDetail
       :key="restaurant.id"
-      :initial-restaurant = "restaurant" />
+      :initial-restaurant = "restaurant"/>
     <hr>
     <!-- 餐廳評論 RestaurantComments -->
     <RestaurantComments 
@@ -22,7 +21,7 @@
 <script>
 import RestaurantDetail from './../components/RestaurantDetail'
 import RestaurantComments from './../components/RestaurantComments'
-import CreateComment from '../components/CreateComment.vue'
+import CreateComment from './../components/CreateComment.vue'
 const dummyData= {
     "restaurant": {
         "id": 1,
@@ -115,12 +114,10 @@ const dummyUser ={
   isAuthenticated: true
 }
 export default {
-  name: 'Restaurant',
   components:{
     RestaurantDetail,
     RestaurantComments,
     CreateComment
-    
   },
   
   data() {

@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import NotFound from '../views/NotFound.vue'
 import SignIn from '../views/SignIn.vue'
 import Restaurants from '../views/Restaurants.vue'
-import User from '../views/User.vue'
 
 Vue.use(Router)
 
@@ -24,11 +23,6 @@ export default new Router({
       path: '/signup',
       name: 'sign-up',
       component: () => import('../views/SignUp.vue')
-    },
-    {
-      path:'/user',
-      name:'user',
-      component: User
     },
    
     {
@@ -62,6 +56,38 @@ export default new Router({
       name: 'users-top',
       component: () => import('../views/UsersTop.vue')
     },
+    {
+      path: '/users/:id',
+      name: 'user',
+      component: () => import('../views/User.vue')
+    },
+    {
+      path: '/admin',
+      exact: true,
+      redirect: '/admin/restaurants'
+    },
+    {
+      path: '/admin/restaurants',
+      name: 'admin-restaurants',
+      component: () => import('../views/AdminRestaurants.vue')
+    },
+    {
+      path: '/admin/restaurants/new',
+      name: 'admin-restaurant-new',
+      component: () => import('../views/AdminRestaurantNew.vue')
+    },
+    {
+      path: '/admin/restaurants/:id/edit',
+      name: 'admin-restaurant-edit',
+      component: () => import('../views/AdminRestaurantEdit.vue')
+    },
+    {
+      path: '/admin/restaurants/:id',
+      name: 'admin-restaurant',
+      component: () => import('../views/AdminRestaurant.vue')
+    },
+    
+    
     {
       path: '*',
       name: 'not-found',
